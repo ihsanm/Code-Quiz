@@ -19,7 +19,36 @@ startbutton.addEventListener("click", function(){
     questionsEL.classList.remove("hide");
     questionsEL.classList.add("start");
     startquizEL.style.display("none")
+
+    
+
+    
 });
 
+function showquestions(currentquestion){
+    questionsEL.innerHTML="";
+
+    questiontext = document.createElement("h2");
+    choicesList = document.createElement("p");
+    choiceItem1 = document.createElement("button");
+    choiceItem2 = document.createElement("button");
+    choiceItem3 = document.createElement("button");
+    choiceItem4 = document.createElement("button");
+
+    questiontext.textContent = currentquestion.question;
+    choiceItem1.textContent = currentquestion.choice1;
+    choiceItem2.textContent = currentquestion.choice2;
+    choiceItem3.textContent = currentquestion.choice3;
+    choiceItem4.textContent = currentquestion.choice4;
+
+    choicesList.append(choiceItem1);
+    choicesList.append(choiceItem2);
+    choicesList.append(choiceItem3);
+    choicesList.append(choiceItem4);
+    questionsEL.append(questiontext);
+    questionsEL.append(choicesList);
+
+}
 
 
+showquestions(questions[0])
