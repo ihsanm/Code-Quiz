@@ -11,7 +11,7 @@ var initials = document.getElementById("initials")
 var submit = document.getElementById("submit");
 var timerEL = document.getElementById("time")
 var questionIndex = 1;
-var timeleft = 130;
+var timeleft = 5;
 
 
 startbutton.addEventListener("click", function(){
@@ -27,6 +27,8 @@ startbutton.addEventListener("click", function(){
 
     if (timeleft < 0){
         timerEL = timeleft;
+        questionsEL.textContent="You ran out of time!";
+        gameover();
     }
 }, 1000)
 
@@ -64,6 +66,10 @@ showquestions(questions[questionIndex-1])
 questionsEL.addEventListener("click", function(event){
     if (questionIndex === 8){
         questionsEL.textContent = "Quiz complete";
+
+        timerEL = timeleft;
+
+        gameover()
     }
     else if (
         event.target.textContent !== questions[questionIndex - 1].answer
@@ -71,13 +77,21 @@ questionsEL.addEventListener("click", function(event){
     ){
         timeleft = timeleft -10;
         questionIndex++;
+        sfxwrong.play();
+        questionsEL.textContent = "incorrect!";
         showquestions(questions[questionIndex-1]);
     }
     else {
         questionIndex++
+        sfxright.play();
         showquestions(questions[questionIndex-1]);
 
     }
 })
+
+function gameover(){
+    endscreen.classList.remove("hide")
+    endscreen.classList.add("start")
+}
 
 
