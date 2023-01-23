@@ -59,6 +59,25 @@ function showquestions(currentquestion){
     questionsEL.append(choicesList);
 
 }
+showquestions(questions[questionIndex-1])
+
+questionsEL.addEventListener("click", function(event){
+    if (questionIndex === 8){
+        questionsEL.textContent = "Quiz complete";
+    }
+    else if (
+        event.target.textContent !== questions[questionIndex - 1].answer
+        
+    ){
+        timeleft = timeleft -10;
+        questionIndex++;
+        showquestions(questions[questionIndex-1]);
+    }
+    else {
+        questionIndex++
+        showquestions(questions[questionIndex-1]);
+
+    }
+})
 
 
-showquestions(questions[0])
