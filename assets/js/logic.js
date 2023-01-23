@@ -9,6 +9,7 @@ var choicesEL = document.getElementById("choices");
 var endscreen = document.getElementById("end-screen");
 var initials = document.getElementById("initials")
 var submit = document.getElementById("submit");
+var timerEL = document.getElementById("time")
 var questionIndex = 1;
 var timeleft = 130;
 
@@ -18,12 +19,21 @@ startbutton.addEventListener("click", function(){
     startquizEL.classList.add("hide");
     questionsEL.classList.remove("hide");
     questionsEL.classList.add("start");
-    startquizEL.style.display("none")
-
     
+    timercheck = setInterval(function(){
+
+    timerEL.innerText = timeleft;
+    timeleft--;
+
+    if (timeleft < 0){
+        timerEL = timeleft;
+    }
+}, 1000)
 
     
 });
+
+
 
 function showquestions(currentquestion){
     questionsEL.innerHTML="";
