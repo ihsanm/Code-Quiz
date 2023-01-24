@@ -7,11 +7,12 @@ var startbutton = document.querySelector("#start");
 var questionsEL = document.getElementById("questions");
 var choicesEL = document.getElementById("choices");
 var endscreen = document.getElementById("end-screen");
-var initials = document.getElementById("initials")
 var submit = document.getElementById("submit");
-var timerEL = document.getElementById("time")
+var timerEL = document.getElementById("time");
+var finalscore = document.getElementById("final-score");
 var questionIndex = 1;
 var timeleft = 5;
+var score = 0;
 
 
 startbutton.addEventListener("click", function(){
@@ -77,12 +78,14 @@ questionsEL.addEventListener("click", function(event){
     ){
         timeleft = timeleft -10;
         questionIndex++;
+        score--;
         sfxwrong.play();
         questionsEL.textContent = "incorrect!";
         showquestions(questions[questionIndex-1]);
     }
     else {
-        questionIndex++
+        questionIndex++;
+        score++;
         sfxright.play();
         showquestions(questions[questionIndex-1]);
 
@@ -92,6 +95,22 @@ questionsEL.addEventListener("click", function(event){
 function gameover(){
     endscreen.classList.remove("hide")
     endscreen.classList.add("start")
+
+    finalscore.textContent = score;
+    console.log(score)
 }
+
+submit.addEventListener("click", function(event){
+
+    var initials = document.querySelector("#initials").value;
+
+
+    localStorage.setItem("initials", initials)
+    localStorage.setItem("score", score)
+
+    if (initials === ""){
+        alert("Please enter your initials!")
+    }
+})
 
 
