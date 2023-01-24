@@ -2,6 +2,7 @@
 var sfxright = new Audio("assets/sfx/correct.wav");
 var sfxwrong = new Audio("assets/sfx/incorrect.wav");
 
+// variables linking objects in html file
 var startquizEL = document.getElementById("start-screen");
 var startbutton = document.querySelector("#start");
 var questionsEL = document.getElementById("questions");
@@ -11,10 +12,11 @@ var submit = document.getElementById("submit");
 var timerEL = document.getElementById("time");
 var finalscore = document.getElementById("final-score");
 var questionIndex = 1;
-var timeleft = 5;
+var timeleft = 60;
 var score = 0;
 
 
+// event listener in which click starts the quiz and timer
 startbutton.addEventListener("click", function(){
     startquizEL.classList.remove("start");
     startquizEL.classList.add("hide");
@@ -37,7 +39,7 @@ startbutton.addEventListener("click", function(){
 });
 
 
-
+// function which displays questions
 function showquestions(currentquestion){
     questionsEL.innerHTML="";
 
@@ -64,6 +66,8 @@ function showquestions(currentquestion){
 }
 showquestions(questions[questionIndex-1])
 
+
+// event listener which checks answers and stops the quiz if time is up or all questions are finished
 questionsEL.addEventListener("click", function(event){
     if (questionIndex === 8){
         questionsEL.textContent = "Quiz complete";
@@ -92,6 +96,7 @@ questionsEL.addEventListener("click", function(event){
     }
 })
 
+// function which controls what happens in the event the game is finished
 function gameover(){
     endscreen.classList.remove("hide")
     endscreen.classList.add("start")
@@ -100,6 +105,7 @@ function gameover(){
     console.log(score)
 }
 
+// saves initials and score to local storage
 submit.addEventListener("click", function(event){
 
     var initials = document.querySelector("#initials").value;

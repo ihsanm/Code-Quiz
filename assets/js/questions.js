@@ -1,3 +1,5 @@
+// variable containing all questions
+
 var questions = [
     {
         question: "Inside which HTML element do we put the JavaScript?",
